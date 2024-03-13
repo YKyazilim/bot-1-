@@ -1,4 +1,5 @@
 import discord
+import os
 from discord.ext import commands
 
 intents = discord.Intents.default()
@@ -18,10 +19,16 @@ async def heh(ctx, count_heh = 5):
     await ctx.send("he" * count_heh)
 @bot.command()
 async def mem(ctx):
-    with open('images/mem1.jpg', 'rb') as f:
+    with open('resimler/mem1.jpg', 'rb') as f:
         # Dönüştürülen Discord kütüphane dosyasını bu değişkende saklayalım!
         picture = discord.File(f)
    # Daha sonra bu dosyayı bir parametre olarak gönderebiliriz!
     await ctx.send(file=picture)
-
+@bot.command()
+async def rastgele(ctx):
+    img_name = random.choice(os.listdir('images'))
+    with open(f'M2L1\images/{img_name}', 'rb') as f:
+        picture = discord.File(f)
+ 
+    await ctx.send(file=picture)
 bot.run(#token)
